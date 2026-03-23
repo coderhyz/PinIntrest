@@ -1,0 +1,25 @@
+.userButton{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* background-color: pink; */
+}
+.userButton img {
+    width: 36px;
+    height: 36px;
+    border: 100%;
+    object-fit: cover;
+}
+.userButton .arrow {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+.userButton .arrow:active {
+    background-color: #f1f1f1;
+    /* border-radius: 100%; */
+}
+.userButton .arrow:hover {
+    background-color: #f1f1f1;
+    /* border-radius: 100%; */
+}

@@ -4,6 +4,6 @@
     gap:16px;
 }
 .content{
-    background-color: pink;
+    /* background-color: pink; */
     flex: 1;
 }
