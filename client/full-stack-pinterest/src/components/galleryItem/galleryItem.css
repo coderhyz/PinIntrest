@@ -1,0 +1,66 @@
+.galleryItem {
+    display: flex;
+    position: relative;
+}
+.galleryItem img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+}
+.linkOverLay,
+.overlayBtn,
+.saveBtn {
+    display: none;
+}
+
+
+.galleryItem:hover .linkOverLay{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    top: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.243);
+}
+.galleryItem:hover .saveBtn {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+
+}
+.galleryItem:hover .overlayBtn {
+    display: flex;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    gap: 8px;
+    padding: 10px;
+    
+}
+.overlayBtn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.812);
+    border: none;
+    padding: 8px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+.overlayBtn button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+.overlayBtn button img {
+    width: 24px;
+    height: 24px;
+}

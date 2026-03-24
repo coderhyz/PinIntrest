@@ -1,0 +1,39 @@
+.gallery{
+    /* 网格布局 */
+    display: grid; 
+    /* 列数 */
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+    /* 自动行高 */
+    grid-auto-rows: 10px;
+}
+@media (max-width: 1746px) {
+  .gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media (max-width: 1509px) {
+  .gallery {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (max-width: 1272px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 1035px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 798px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 475px) {
+  .gallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
