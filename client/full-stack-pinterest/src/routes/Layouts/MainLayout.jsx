@@ -12,8 +12,8 @@ function MainLayout() {
                 <div className="content">
                     {/* 顶部栏 */}
                     <TopBar></TopBar>
-                    {/* 图片展示 */}
-                    <Outlet></Outlet>
+                    {/* 路由出口 */}
+                    <Outlet />
                 </div>
             </div>
 
