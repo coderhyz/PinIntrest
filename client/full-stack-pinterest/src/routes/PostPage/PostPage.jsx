@@ -8,7 +8,7 @@ function PostPage() {
         <div className="postPage">
             {/* Back button */}
             <svg
-                height="20"
+                height="30"
                 viewBox="0 0 24 24"
                 width="20"
                 style={{ cursor: "pointer" }}

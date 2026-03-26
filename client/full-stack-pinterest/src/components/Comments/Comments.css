@@ -65,4 +65,10 @@
 .commentForm .emoji {
     cursor: pointer;
     font-size: 20px;
+    position: relative;
+}
+.emojiPicker{
+    position: absolute;
+    right: 0;
+    bottom: 50px;
 }
