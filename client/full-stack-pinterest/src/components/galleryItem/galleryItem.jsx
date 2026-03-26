@@ -1,10 +1,11 @@
 import './galleryItem.css'
+import ImageKit from '../ImageKit/ImageKit';
 import { Link } from 'react-router';
 function GalleryItem({ item }) {
     return (
         //  gridRowEnd: `span ${Math.ceil(item.height / 100)} 
         <div className="galleryItem" style={{ gridRowEnd: `span ${Math.ceil(item.height / 100)}` }}>
-            <img src={item.media} alt={item.title} />
+            <ImageKit path={item.media} alt={item.title} w={372} h={item.height}></ImageKit>
             <Link className='linkOverLay' to={`/post/${item.id}`}></Link>
             <button className='saveBtn'>Save</button>
             <div className="overlayBtn">

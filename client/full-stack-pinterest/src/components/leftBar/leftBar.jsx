@@ -11,7 +11,7 @@ function LeftBar() {
                 <a href="/" className="menuIcon">
                     <img className="logo" src="/general/home.svg" alt="" />
                 </a>
-                <a href="/" className="menuIcon">
+                <a href="/create" className="menuIcon">
                     <img className="logo" src="/general/create.svg" alt="" />
                 </a>
                 <a href="/" className="menuIcon">

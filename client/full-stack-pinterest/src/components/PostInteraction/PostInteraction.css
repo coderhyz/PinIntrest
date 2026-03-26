@@ -1,0 +1,35 @@
+.postInteractions{
+        width: 100% ;
+        /* padding: 10px; */
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+}
+.interactionIcons{
+    display: flex;
+    gap: 16px;
+}
+.interactionIcons span{
+    font-size: 20px;
+    color: #666;
+}
+.interactionIcons img{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+.interactionIcons img:hover{
+   background-color: #f9f9f9;
+}
+.postInteractions button{
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #e50829;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
