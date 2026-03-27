@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
+    /* background-color: pink; */
+    /* padding: 10px 0; */
 }   
 .profileUserName{
     font-size: 24px;
@@ -11,8 +13,17 @@
 .followCounts{
     display: flex;
     gap: 16px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
+    color: #666;
+    /* font-weight: bold; */
+}
+.followCounts .followers{
+    font-size: 15px;
+    font-weight: 400;
+}
+.followCounts .following{
+    font-size: 15px;
+    font-weight: 400;
 }
 .profileInteraction{
     display: flex;
@@ -20,8 +31,8 @@
     gap: 46px;
 }
 .profileInteraction img{
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     cursor: pointer ;
 }
@@ -52,7 +63,9 @@
 }
 .profileOptions{
     display: flex;
+    /* background-color: pink; */
     gap: 16px;
+   
     margin-top: 16px;
     font-size: 18px;
     /* font-weight: bold; */
@@ -61,7 +74,11 @@
     cursor: pointer;
     font-size: 18px;
     font-weight: 400;
+    padding-bottom: 2px;
 }
 .active{
     border-bottom: 3px solid black;
+}
+.profileContent{
+    margin-top: 10px;
 }

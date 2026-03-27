@@ -3,6 +3,7 @@ import ImageKit from "../../components/ImageKit/ImageKit";
 import PostInteraction from "../../components/PostInteraction/PostInteraction";
 import { Link } from 'react-router';
 import Comments from '../../components/Comments/Comments';
+// 作品主页
 function PostPage() {
     return (
         <div className="postPage">
@@ -17,6 +18,7 @@ function PostPage() {
             </svg>
             {/* Post container */}
             <div className="postContainer">
+                {/* 图片 */}
                 <div className="postImg">
                     <ImageKit
                         path="/pins/pin1.jpeg"
@@ -24,6 +26,7 @@ function PostPage() {
                         w={736}
                     />
                 </div>
+                {/* 作品详情 */}
                 <div className="postDetail">
                     <PostInteraction />
                     <Link className='postUser' to="/john">
@@ -35,6 +38,7 @@ function PostPage() {
                         />
                         <span>John Doe</span>
                     </Link>
+                    {/* 评论 */}
                     <Comments />
                 </div>
 

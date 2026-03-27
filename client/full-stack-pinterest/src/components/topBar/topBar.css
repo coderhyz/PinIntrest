@@ -1,11 +1,11 @@
 .topBar{
     display: flex;
-    margin: 16px 0;
+    margin: 16px 0  16px 16px;
     padding: 0 16px 0 0;
     align-items: center;
     gap: 16px;
     /* background-color: pink; */
-    /* height: 40px; */
+
 }
 .search{
     flex: 1;
@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    border: 3px solid transparent;
 }
 .search input{
     flex: 1;

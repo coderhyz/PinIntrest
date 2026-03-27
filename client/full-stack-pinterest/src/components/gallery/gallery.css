@@ -2,12 +2,13 @@
     /* 网格布局 */
     display: grid; 
     /* 列数 */
-    grid-template-columns: repeat(7, 1fr);
+    /* grid-template-columns: repeat(7, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 16px;
     /* 自动行高 */
     grid-auto-rows: 10px;
 }
-@media (max-width: 1746px) {
+/* @media (max-width: 1746px) {
   .gallery {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -36,4 +37,4 @@
   .gallery {
     grid-template-columns: repeat(1, 1fr);
   }
-}
+} */

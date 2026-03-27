@@ -14,12 +14,21 @@
     font-size: 20px;
     color: #666;
 }
+.interactionIcons {
+    /* background-color: #e50829; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+}
 .interactionIcons img{
     width: 24px;
     height: 24px;
-    cursor: pointer;
+    
+    /* padding: 10px; */
 }
-.interactionIcons img:hover{
+.interactionIcons div:hover{
    background-color: #f9f9f9;
 }
 .postInteractions button{

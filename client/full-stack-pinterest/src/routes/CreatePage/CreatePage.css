@@ -1,0 +1,273 @@
+.createPage {
+    position: relative;
+}
+
+.createTop {
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.createTitle {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.createButton {
+    background-color: #e50829;
+    color: white;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    padding: 16px;
+    border-radius: 32px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.createButton:hover {
+    background-color: #c1011e;
+}
+
+.createButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.createBottom {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+}
+
+.upload {
+    background-color: #e9e9e9;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    border: 2px dashed #dddddd;
+    width: 375px;
+    height: 574px;
+    padding: 16px;
+    position: relative;
+}
+
+.uploadInput {
+    display: none;
+}
+
+.uploadTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.uploadInfo {
+    position: absolute;
+    bottom: 32px;
+    font-size: 20px;
+    text-align: center;
+    color: gray;
+}
+
+.preview {
+    width: 375px;
+    position: relative;
+}
+
+.preview img {
+    border-radius: 32px;
+    width: 100%;
+    display: block;
+}
+
+.previewImage {
+    height: auto;
+}
+
+.editIcon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.createForm {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 584px;
+}
+
+.createFormItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.createFormItem label {
+    font-size: 13px;
+    color: gray;
+}
+
+.createFormItem input,
+.createFormItem textarea,
+.createFormItem select {
+    font-size: 15px;
+    border: 2px solid #e9e9e9;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.createFormItem textarea {
+    resize: none;
+}
+
+/* FIXED: SELECT OR ADD BOARD */
+.newBoard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+.newBoardContainer {
+    flex: 1;
+    display: flex;
+}
+
+.newBoardItem {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: #e9e9e9;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    white-space: nowrap;
+}
+
+.newBoardItem.active {
+    background-color: #111111;
+    color: white;
+}
+
+.createBoardButton {
+    background-color: #e50829;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 13px;
+    width: max-content;
+    align-self: flex-end;
+}
+
+.boardForm {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.boardFormContainer {
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: min(420px, calc(100vw - 32px));
+}
+
+.boardFormClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.boardFormContainer form {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.boardFormContainer h1 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #a6a6a6;
+}
+
+.boardFormContainer input {
+    border: 2px solid #e9e9e9;
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 15px;
+}
+
+.boardFormContainer button {
+    background-color: #e50829;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.createPage small {
+    color: #a6a6a6;
+    font-size: 13px;
+}
+
+@media (max-width: 1104px) {
+    .createBottom {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .createForm {
+        width: 100%;
+    }
+
+    .preview,
+    .upload {
+        width: 100%;
+    }
+}
+
+@media (max-width: 475px) {
+    .upload {
+        width: 100%;
+    }
+}
