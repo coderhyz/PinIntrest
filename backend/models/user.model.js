@@ -31,5 +31,6 @@ const userSchema = new Schema(
     // 自动添加 时间戳字段
     { timestamps: true }
 );
-
-export default mongoose.model("User", userSchema)
+const User = mongoose.model("User", userSchema);
+// 导出 User  模型
+export default User;

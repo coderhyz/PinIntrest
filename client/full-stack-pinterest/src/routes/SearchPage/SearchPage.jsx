@@ -1,10 +1,13 @@
-import React from 'react';
-
+import { useSearchParams } from 'react-router';
+import Gallery from '../../components/gallery/gallery';
+// 搜索结果页面
 function SearchPage() {
+    const [searchParams, setSearchParams] = useSearchParams();
+    // 得到参数
+    const searchKeyword = searchParams.get('searchKeyword');
+    const boardId = searchParams.get('boardId');
     return (
-        <div className="SearchPage">
-            SearchPage content
-        </div>
+        <Gallery searchKeyword={searchKeyword} boardId={boardId} />
     );
 }
 

@@ -10,27 +10,38 @@ import ProfilePage from './routes/ProfilePage/ProfilePage.jsx'
 import SearchPage from './routes/SearchPage/SearchPage.jsx'
 import { BrowserRouter, Routes, Route } from "react-router";
 import MainLayout from './routes/Layouts/MainLayout.jsx'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient();
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        {/* 一级路由 */}
-        <Route element={<MainLayout />}>
-          {/* home */}
-          <Route path="/" element={<HomePage />} />
-          {/* 创建pin */}
-          <Route path="/create" element={<CreatePage />} />
-          {/* Pin详情 */}
-          <Route path="/post/:id" element={<PostPage />} />
-          {/* 用户主页 */}
-          <Route path="/:username" element={<ProfilePage />} />
-          {/* 搜索 */}
-          <Route path="/search" element={<SearchPage />} />
-        </Route>
-        {/* auth */}
-        <Route path="/auth" element={<AuthPage />} />
+    {/* 数据请求 */}
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          {/* 一级路由 */}
+          <Route element={<MainLayout />}>
+            {/* home */}
+            <Route path="/" element={<HomePage />} />
+            {/* 创建pin */}
+            <Route path="/create" element={<CreatePage />} />
+            {/* Pin详情 */}
+            <Route path="/pin/:id" element={<PostPage />} />
+            {/* 用户主页 */}
+            <Route path="/:username" element={<ProfilePage />} />
+            {/* 搜索 */}
+            <Route path="/search" element={<SearchPage />} />
+          </Route>
+          {/* auth */}
+          <Route path="/auth" element={<AuthPage />} />
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   </StrictMode>,
 )

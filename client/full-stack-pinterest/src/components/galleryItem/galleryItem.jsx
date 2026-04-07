@@ -6,7 +6,7 @@ function GalleryItem({ item }) {
         //  gridRowEnd: `span ${Math.ceil(item.height / 100)} 
         <div className="galleryItem" style={{ gridRowEnd: `span ${Math.ceil(item.height / 100)}` }}>
             <ImageKit path={item.media} alt={item.title} w={372} h={item.height}></ImageKit>
-            <Link className='linkOverLay' to={`/post/${item.id}`}></Link>
+            <Link className='linkOverLay' to={`/pin/${item._id}`}></Link>
             <button className='saveBtn'>Save</button>
             <div className="overlayBtn">
                 <button>

@@ -1,10 +1,31 @@
 import './PostPage.css'
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
+import { getPinById } from "../../api/pin.js";
 import ImageKit from "../../components/ImageKit/ImageKit";
 import PostInteraction from "../../components/PostInteraction/PostInteraction";
 import { Link } from 'react-router';
 import Comments from '../../components/Comments/Comments';
 // 作品主页
 function PostPage() {
+    const { id } = useParams(); // 从 URL 中获取 Pin ID
+    const getPinData = async (pinId) => {
+        try {
+            const response = await getPinById(pinId);
+            return response.data;
+        } catch (error) {
+            throw new Error('Failed to fetch pin data: ' + error.message);
+        }
+    };
+    // TODO: 获取作品数据
+    const { data, isPending, error } = useQuery({
+        queryKey: ["pin", id], // 作品ID
+        queryFn: () => getPinData(id) // 替换为实际的 Pin ID,
+    });
+    if (isPending) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+    if (!data) return <div>No data found</div>;
+    console.log(data)
     return (
         <div className="postPage">
             {/* Back button */}
@@ -21,22 +42,24 @@ function PostPage() {
                 {/* 图片 */}
                 <div className="postImg">
                     <ImageKit
-                        path="/pins/pin1.jpeg"
-                        alt="post image"
+                        path={data.media}
+                        alt={data.description}
                         w={736}
                     />
                 </div>
                 {/* 作品详情 */}
                 <div className="postDetail">
+                    {/* 互动区域 */}
                     <PostInteraction />
-                    <Link className='postUser' to="/john">
+                    {/* 用户信息 */}
+                    <Link className='postUser' to={`/${data.user.username}`}>
                         <ImageKit
-                            path="/general/noAvatar.png"
+                            path={data.user.img || '/gen/noAvatar.png'}
                             alt="User image"
                             w={50}
                             h={50}
                         />
-                        <span>John Doe</span>
+                        <span>{data.user.displayName}</span>
                     </Link>
                     {/* 评论 */}
                     <Comments />
