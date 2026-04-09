@@ -30,7 +30,13 @@
     height: 32px;
     border-radius: 50%;
 }
-
+.commentsLists .comment .commentUser {
+    /* font-weight: bold; */
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+}
 .commentsLists .comment .commentContent {
     display: flex;
     flex-direction: column;
@@ -40,7 +46,11 @@
     font-size: 13px;
     color: #999;
 }
-
+.noComments{
+    text-align: center;
+    color: #999;
+    font-size: medium;
+}
 .commentForm {
     display: flex;
     gap: 16px;
@@ -60,6 +70,7 @@
     border: none;
     border-radius: 20px;
     outline: none;
+    font-size: 18px;
 }
 
 .commentForm .emoji {

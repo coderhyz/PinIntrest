@@ -11,9 +11,9 @@ const Boards = ({ userId }) => {
         queryFn: () => request.get(`/boards/${userId}`).then((res) => res.data),
     });
 
-    if (isPending) return "Loading...";
+    if (isPending) return "加载中...";
 
-    if (error) return "An error has occurred: " + error.message;
+    if (error) return "发生了一个错误: " + error.message;
 
     console.log(data);
 

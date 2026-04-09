@@ -8,6 +8,7 @@ function GalleryItem({ item }) {
             <ImageKit path={item.media} alt={item.title} w={372} h={item.height}></ImageKit>
             <Link className='linkOverLay' to={`/pin/${item._id}`}></Link>
             <button className='saveBtn'>Save</button>
+            {/* 悬浮按钮 */}
             <div className="overlayBtn">
                 <button>
                     <img src="/general/share.svg" alt="" />

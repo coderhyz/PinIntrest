@@ -215,10 +215,10 @@ function Gallery({ searchKeyword, userId, boardId }) {
             dataLength={allPins.length}
             next={fetchNextPage}
             hasMore={!!hasNextPage}
-            // 当加载更多数据时显示的加载状态
-            loader={<h2 style={{ textAlign: 'center' }}>Loading more pins</h2>}
-            // 当没有更多数据时显示的结束消息
-            endMessage={!allPins.length ? <h2 style={{ textAlign: 'center' }}>No pins found</h2> : <h2 style={{ textAlign: 'center' }}>You have seen all pins</h2>}
+        // 当加载更多数据时显示的加载状态
+        // loader={<h2 style={{ textAlign: 'center' }}>Loading more pins</h2>}
+        // 当没有更多数据时显示的结束消息
+        // endMessage={<h2 style={{ textAlign: 'center' }}>You have seen all pins</h2>}
         >
             <>
                 <div className="gallery">{renderGalleryItem}</div>

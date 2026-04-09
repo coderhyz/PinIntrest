@@ -62,7 +62,7 @@ function PostPage() {
                         <span>{data.user.displayName}</span>
                     </Link>
                     {/* 评论 */}
-                    <Comments />
+                    <Comments id={data._id} />
                 </div>
 
             </div>

@@ -4,7 +4,7 @@ export const getPins = async (req, res) => {
     // 从查询参数中获取 cursor页码 和 searchKeyword 搜索关键词
     const { cursor, searchKeyword, userId, boardId } = req.query;
     const pageNumber = Number(cursor) || 0;
-    const LIMIT = 28; // 每页显示的 Pin 数量
+    const LIMIT = 40; // 每页显示的 Pin 数量
     try {
         const pins = await Pin.find(searchKeyword ? {
             $or: [
@@ -15,6 +15,7 @@ export const getPins = async (req, res) => {
                 { tags: { $in: [searchKeyword] } }
             ]
         } : userId ? { user: userId } : boardId ? { board: boardId } : {})
+            // 分页查询，使用 limit 和 skip 来实现分页功能
             .limit(LIMIT)
             .skip(pageNumber * LIMIT);
         // 是否还有下一页
