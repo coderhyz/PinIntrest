@@ -34,12 +34,12 @@ export const loginUser = async (req, res) => {
     try {
         // 根据邮箱查询用户信息
         const user = await User.findOne({ email });
-        // 验证邮箱
+        // 验证是否有重复用户
         if (!user) {
             return res.status(404).json({ message: "邮箱未找到" });
         }
         const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
-        // 验证密码        
+        // 验证密码  是否正确      
         if (!isPasswordValid) {
             return res.status(400).json({ message: "密码不正确" });
         }
@@ -47,6 +47,7 @@ export const loginUser = async (req, res) => {
         const { hashedPassword, ...userData } = user.toObject();
         // 生成 JWT token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+        // 将 token 存储在 HttpOnly cookie 中，设置过期时间为 7 天
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
@@ -60,6 +61,7 @@ export const loginUser = async (req, res) => {
 };
 // 用户登出
 export const logoutUser = async (req, res) => {
+    // 清除 token cookie
     res.clearCookie("token");
     // 这里可以根据实际需求清除用户的登录状态，例如删除 token 或清除 session
     res.status(200).json({ message: "用户已退出登录" });

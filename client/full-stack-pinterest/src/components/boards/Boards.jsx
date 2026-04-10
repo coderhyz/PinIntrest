@@ -21,7 +21,9 @@ const Boards = ({ userId }) => {
         <div className="collections">
             {/* COLLECTION */}
             {data?.map((board) => (
+
                 <Link
+                    // 点击收藏夹时，跳转到搜索结果页面，并传递收藏夹ID作为参数
                     to={`/search?boardId=${board._id}`}
                     className="collection"
                     key={board._id}

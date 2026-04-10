@@ -8,19 +8,23 @@ import { useNavigate } from "react-router";
 function AuthPage() {
     const [isRegister, setIsRegister] = useState(false);
     const [error, setError] = useState(null);
+    // 全局用户仓库更新函数
     const { setUser: setCurrentUser } = useUserStore();
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // 
+        /**
+         * 使用 FormData 从表单中提取数据，并转换为普通对象
+         */
         const userFormData = new FormData(e.target);
         const userData = Object.fromEntries(userFormData);
         try {
             const res = await request.post(`/users/auth/${isRegister ? "register" : "login"}`, userData);
             // console.log(res)
+            // 保存到全局用户状态
             setCurrentUser(res.data.data);
             setError(null);
-            // 导航到首页
+            // 跳转到首页
             navigate("/");
         } catch (error) {
             setError(error.response?.data?.message || error.message);
@@ -76,7 +80,10 @@ function AuthPage() {
                             />
                         </div>
                         <button type="submit">Register</button>
-                        <p onClick={() => setIsRegister(false)}>
+                        <p onClick={() => {
+                            setIsRegister(false)
+                            setError(null)
+                        }}>
                             Do you have an account? <b>Login</b>
                         </p>
                         {error && <p className="error">{error}</p>}
@@ -105,7 +112,10 @@ function AuthPage() {
                             />
                         </div>
                         <button type="submit">Login</button>
-                        <p onClick={() => setIsRegister(true)}>
+                        <p onClick={() => {
+                            setIsRegister(true);
+                            setError(null);
+                        }}>
                             Don&apos;t have an account? <b>Register</b>
                         </p>
                         {error && <p className="error">{error}</p>}

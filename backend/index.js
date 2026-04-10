@@ -6,6 +6,7 @@ import boardRouter from "./routes/board.route.js";
 import pinRouter from "./routes/pin.route.js";
 import commentRouter from "./routes/comment.route.js";
 import connectDB from "./utils/connectDB.js";
+import cookieParser from "cookie-parser";
 const app = express();
 app.use(express.json());
 // 配置 CORS 中间件，允许来自指定来源的请求，来源 URL 从环境变量中获取
@@ -13,6 +14,7 @@ app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true // 允许携带cookie
 }));
+app.use(cookieParser());
 // 使用用户路由
 app.use("/users", userRouter);
 // 使用看板路由

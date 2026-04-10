@@ -7,7 +7,6 @@ import useUserStore from '../../store/userStore';
 function UserButton() {
     const [open, setOpen] = useState(false);
     const { setUser: setCurrentUser, user: currentUser } = useUserStore();
-    // console.log(currentUser)
     const navigate = useNavigate();
     const handleLogout = async () => {
         // 处理退出登录逻辑

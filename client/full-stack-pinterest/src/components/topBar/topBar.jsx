@@ -10,9 +10,9 @@ function TopBar() {
             navigate('/')
             return;
         }
-        const keyword = e.target[0].value;
+        const searchKeyword = e.target[0].value;
         // 跳转到搜索结果页面，并传递搜索关键词
-        navigate(`/search?searchKeyword=${keyword}`);
+        navigate(`/search?searchKeyword=${searchKeyword}`);
     }
     return (
         <>

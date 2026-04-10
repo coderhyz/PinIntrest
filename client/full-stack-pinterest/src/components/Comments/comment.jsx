@@ -4,7 +4,7 @@ import ImageKit from "../ImageKit/ImageKit";
 function Comment({ comment }) {
     return (
         <div className="comment">
-            <ImageKit className="commentAvatar" path={comment.user.img} alt="User image" w={40} h={40}></ImageKit>
+            <ImageKit className="commentAvatar" path={comment.user.img || "/general/noAvatar.png"} alt="User image" w={40} h={40}></ImageKit>
             <div className="commentContent">
                 {/* 导航到用户主页 */}
                 <Link className='commentUser' to={`/${comment.user.username}`} >
