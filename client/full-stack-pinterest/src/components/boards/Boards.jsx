@@ -12,11 +12,7 @@ const Boards = ({ userId }) => {
     });
 
     if (isPending) return "加载中...";
-
     if (error) return "发生了一个错误: " + error.message;
-
-    console.log(data);
-
     return (
         <div className="collections">
             {/* COLLECTION */}
@@ -28,6 +24,7 @@ const Boards = ({ userId }) => {
                     className="collection"
                     key={board._id}
                 >
+
                     <ImageKit path={board.firstPin.media} />
                     <div className="collectionInfo">
                         <h1>{board.title}</h1>

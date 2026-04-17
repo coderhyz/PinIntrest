@@ -8,7 +8,7 @@ import PostPage from './routes/PostPage/PostPage.jsx'
 import AuthPage from './routes/AuthPage/AuthPage.jsx'
 import ProfilePage from './routes/ProfilePage/ProfilePage.jsx'
 import SearchPage from './routes/SearchPage/SearchPage.jsx'
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import MainLayout from './routes/Layouts/MainLayout.jsx'
 import {
   QueryClient,
@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')).render(
           {/* 一级路由 */}
           <Route element={<MainLayout />}>
             {/* home */}
-            <Route path="/" element={<HomePage />} />
+            <Route index path="/" element={<HomePage />} />
             {/* 创建pin */}
             <Route path="/create" element={<CreatePage />} />
             {/* Pin详情 */}
@@ -36,10 +36,12 @@ createRoot(document.getElementById('root')).render(
             <Route path="/:username" element={<ProfilePage />} />
             {/* 搜索 */}
             <Route path="/search" element={<SearchPage />} />
+
           </Route>
           {/* auth */}
           <Route path="/auth" element={<AuthPage />} />
-
+          {/* 3. 兜底策略：输入任何不存在的路径，强制跳回首页 */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

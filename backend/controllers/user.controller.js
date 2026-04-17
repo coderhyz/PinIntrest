@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Follow from "../models/follow.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 // 注册新用户
@@ -23,6 +24,15 @@ export const registerUser = async (req, res) => {
         // 创建新用户
         const newUser = new User({ username, displayName, email, hashedPassword: hashedPassword });
         await newUser.save();
+        // 生成 JWT token
+        const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET);
+        // 携带 token 存储在 HttpOnly cookie 中，设置过期时间为 30 天
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
+
         return res.status(201).json({ message: "用户注册成功" });
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -47,14 +57,14 @@ export const loginUser = async (req, res) => {
         const { hashedPassword, ...userData } = user.toObject();
         // 生成 JWT token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
-        // 将 token 存储在 HttpOnly cookie 中，设置过期时间为 7 天
+        // 将 token 存储在 HttpOnly cookie 中，设置过期时间为 30 天
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7天
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30天
             sameSite: "strict",
         });
-        return res.status(200).json({ message: "登录成功", data: userData, token });
+        return res.status(200).json({ message: "登录成功", data: userData });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -76,6 +86,55 @@ export const getUserByUserName = async (req, res) => {
         return res.status(404).json({ message: "用户未找到" });
     }
     // console.log(user)
-    const { hashedPassword, ...userData } = user.toObject(); // 从用户对象中剔除敏感信息
-    return res.status(200).json({ message: "用户信息获取成功", data: userData });
+    // 从用户对象中剔除敏感信息
+    const { hashedPassword, ...userData } = user.toObject();
+    // 查询用户的粉丝数量和关注数量
+    const followersCount = await Follow.countDocuments({ following: user._id });
+    const followingCount = await Follow.countDocuments({ follower: user._id });
+    // 从请求的cookie中获取token
+    const token = req.cookies.token;
+    // 如果没有token，返回用户信息和关注状态（默认为未关注）
+    if (!token) {
+        return res.status(200).json({ message: "用户信息获取成功", data: { ...userData, followersCount, followingCount, isFollowing: false } });
+    }
+    // 验证token的有效性
+    jwt.verify(token, process.env.JWT_SECRET, async (err, payload) => {
+        if (!err) {
+            const isExists = await Follow.exists({
+                follower: payload.userId,
+                following: user._id,
+            });
+
+            return res.status(200).json({
+                ...userData,
+                followersCount,
+                followingCount,
+                isFollowing: isExists ? true : false,
+            });
+        }
+    });
+}
+// 跟随用户
+export const followUser = async (req, res) => {
+    // 获取要关注的用户的用户名
+    const { username } = req.params;
+    try {
+        // 1. 查找目标用户
+        const user = await User.findOne({ username });
+        if (req.userId === user._id.toString()) {
+            return res.status(400).json({ message: "你不能关注你自己" });
+        }
+        // 2. 检查当前关注状态
+        const isFollowing = await Follow.exists({ follower: req.userId, following: user._id });
+        if (isFollowing) {
+            await Follow.deleteOne({ follower: req.userId, following: user._id });
+            return res.status(200).json({ message: "取消关注用户成功" });
+        } else {
+            const newFollow = new Follow({ follower: req.userId, following: user._id });
+            await newFollow.save();
+            return res.status(200).json({ message: "关注用户成功" });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 }

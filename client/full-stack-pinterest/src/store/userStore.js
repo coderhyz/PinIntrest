@@ -5,7 +5,7 @@ const useUserStore = create(
         (set) => ({
             user: null,
             // 设置用户信息
-            setUser: (user) => set({ user }),
+            setUser: (newUser) => set({ user: newUser }),
             // 清除用户信息
             clearUser: () => set({ user: null }),
             // 更新用户信息

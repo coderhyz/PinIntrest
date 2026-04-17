@@ -11,13 +11,16 @@ function AuthPage() {
     // 全局用户仓库更新函数
     const { setUser: setCurrentUser } = useUserStore();
     const navigate = useNavigate();
+    // 点击登录或者注册
     const handleSubmit = async (e) => {
         e.preventDefault();
         /**
          * 使用 FormData 从表单中提取数据，并转换为普通对象
          */
         const userFormData = new FormData(e.target);
+        // console.log(userFormData)
         const userData = Object.fromEntries(userFormData);
+        // console.log(userData)
         try {
             const res = await request.post(`/users/auth/${isRegister ? "register" : "login"}`, userData);
             // console.log(res)
@@ -40,51 +43,51 @@ function AuthPage() {
                     // 注册表单
                     <form key="register" onSubmit={handleSubmit}>
                         <div className="formGroup">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">用户名</label>
                             <input
                                 type="username"
-                                placeholder="Username"
+                                placeholder="用户名"
                                 required
                                 name="username"
                                 id="username"
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="displayName">Name</label>
+                            <label htmlFor="displayName">姓名</label>
                             <input
                                 type="displayName"
-                                placeholder="Name"
+                                placeholder="姓名"
                                 required
                                 name="displayName"
                                 id="displayName"
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">邮箱</label>
                             <input
                                 type="email"
-                                placeholder="Email"
+                                placeholder="邮箱"
                                 required
                                 name="email"
                                 id="email"
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">密码</label>
                             <input
                                 type="password"
-                                placeholder="Password"
+                                placeholder="密码"
                                 required
                                 name="password"
                                 id="password"
                             />
                         </div>
-                        <button type="submit">Register</button>
+                        <button type="submit">注册</button>
                         <p onClick={() => {
                             setIsRegister(false)
                             setError(null)
                         }}>
-                            Do you have an account? <b>Login</b>
+                            已经有一个账号? <b>登录</b>
                         </p>
                         {error && <p className="error">{error}</p>}
                     </form>
@@ -92,31 +95,31 @@ function AuthPage() {
                     // 登录表单
                     <form key="loginForm" onSubmit={handleSubmit}>
                         <div className="formGroup">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">邮箱</label>
                             <input
                                 type="email"
-                                placeholder="Email"
+                                placeholder="邮箱"
                                 required
                                 name="email"
                                 id="email"
                             />
                         </div>
                         <div className="formGroup">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">密码</label>
                             <input
                                 type="password"
-                                placeholder="Password"
+                                placeholder="密码"
                                 required
                                 name="password"
                                 id="password"
                             />
                         </div>
-                        <button type="submit">Login</button>
+                        <button type="submit">登录</button>
                         <p onClick={() => {
                             setIsRegister(true);
                             setError(null);
                         }}>
-                            Don&apos;t have an account? <b>Register</b>
+                            没有账号? <b>注册</b>
                         </p>
                         {error && <p className="error">{error}</p>}
                     </form>

@@ -1,7 +1,6 @@
 import express from "express";
-import User from "../models/user.model.js";
-import { getUserByUserName, registerUser, loginUser, logoutUser } from "../controllers/user.controller.js";
-import bcrypt from "bcryptjs";
+import { getUserByUserName, registerUser, loginUser, logoutUser, followUser } from "../controllers/user.controller.js";
+import { verifyToken } from "../middlewares/verifyToken.js";
 // 创建一个新的路由实例
 const userRouter = express.Router();
 /**
@@ -20,4 +19,8 @@ userRouter.post("/auth/logout", logoutUser);
  * 获取用户信息
  */
 userRouter.get("/:username", getUserByUserName);
+/**
+ * 跟随用户
+ */
+userRouter.post('/follow/:username', verifyToken, followUser);
 export default userRouter;

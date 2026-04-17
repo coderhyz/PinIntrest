@@ -1,19 +1,21 @@
 import './userButton.css'
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import request from '../../utils/request';
 import { Link } from 'react-router';
 import useUserStore from '../../store/userStore';
 function UserButton() {
     const [open, setOpen] = useState(false);
     const { setUser: setCurrentUser, user: currentUser } = useUserStore();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    // 推出登录
     const handleLogout = async () => {
         // 处理退出登录逻辑
         setCurrentUser(null); // 模拟退出登录
         await request.post("/users/auth/logout");
-        navigate('/auth');
-    };
+        // navigate('/auth');
+    }
+    console.log(currentUser)
     return (
         // 当前用户是否登录
         currentUser ?

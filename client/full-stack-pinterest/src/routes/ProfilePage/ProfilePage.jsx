@@ -5,6 +5,7 @@ import { getUserByUserName } from '../../api/user';
 import './ProfilePage.css';
 import ImageKit from '../../components/ImageKit/ImageKit';
 import Gallery from '../../components/gallery/gallery';
+import FollowButton from './FollowButton';
 import Board from '../../components/boards/Boards';
 function ProfilePage() {
     const [type, setType] = useState('created');
@@ -14,7 +15,7 @@ function ProfilePage() {
         try {
             // 调用 API 获取用户信息
             const response = await getUserByUserName(username);
-            return response.data.data;
+            return response.data;
         } catch (error) {
             throw new Error('Failed to fetch user data: ' + error.message);
         }
@@ -27,7 +28,7 @@ function ProfilePage() {
     if (error) return <div>Error: {error.message}</div>;
     console.log(data)
     if (!data) return <div>No data found</div>;
-
+    console.log(data)
     return (
         <>
             <div className="profilePage">
@@ -35,9 +36,9 @@ function ProfilePage() {
                 <span className='profileUserName'>{data.displayName}</span>
                 <span className='profileUserHandle'>@{data.username}</span>
                 <span className='followCounts'>
-                    <span className='followers'>100 Followers</span>
+                    <span className='followers'>{data.followersCount || 0} Followers</span>
                     *
-                    <span className='following'>5 Following</span>
+                    <span className='following'>{data.followingCount || 0} Following</span>
 
                 </span>
                 {/* Profile Interaction */}
@@ -45,7 +46,8 @@ function ProfilePage() {
                     <ImageKit path="/general/upload.svg" alt="Follow icon" />
                     <div className="profileButton">
                         <button>Message</button>
-                        <button>Follow</button>
+                        {/* 关注按钮 */}
+                        <FollowButton isFollowing={data.isFollowing} username={data.username} />
                     </div>
                     <ImageKit path="/general/more.svg" alt="More icon" />
                 </div>
@@ -62,6 +64,7 @@ function ProfilePage() {
 
             <div className="profileContent">
                 {/* <Gallery></Gallery> */
+                    // 传递userId
                     type === 'created' ? <Gallery userId={data._id} /> : <Board userId={data._id} />
                 }
             </div>
